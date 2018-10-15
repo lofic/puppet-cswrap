@@ -8,9 +8,9 @@ class cswrap(
     $clones = {},
     $properties = {},
     $rsc_defaults = {},
-
-
 ) {
+
+    include corosync
 
     cs_shadow { 'puppet': }
 
