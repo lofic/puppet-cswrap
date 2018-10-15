@@ -16,6 +16,8 @@ class cswrap(
 
     $primitives.each |$k, $v| { cs_primitive { $k: * => $v } }
 
+    $properties.each |$k, $v| { cs_property  { $k: * => $v } }
+
     cs_commit { 'puppet': }
 
 }
