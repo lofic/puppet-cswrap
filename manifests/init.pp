@@ -12,21 +12,24 @@ class cswrap(
 
     include corosync
 
+    # Defaults
+    $d = { cib => 'puppet' }
+
     cs_shadow { 'puppet': }
 
-    $primitives.each   |$k, $v| { cs_primitive    { $k: * => $v } }
+    $primitives.each   |$k, $v| { cs_primitive    { $k: * => $d + $v } }
 
-    $locations.each    |$k, $v| { cs_location     { $k: * => $v } }
+    $locations.each    |$k, $v| { cs_location     { $k: * => $d + $v } }
 
-    $colocations.each  |$k, $v| { cs_colocation   { $k: * => $v } }
+    $colocations.each  |$k, $v| { cs_colocation   { $k: * => $d + $v } }
 
-    $orders.each       |$k, $v| { cs_order        { $k: * => $v } }
+    $orders.each       |$k, $v| { cs_order        { $k: * => $d + $v } }
 
-    $clones.each       |$k, $v| { cs_clone        { $k: * => $v } }
+    $clones.each       |$k, $v| { cs_clone        { $k: * => $d + $v } }
 
-    $properties.each   |$k, $v| { cs_property     { $k: * => $v } }
+    $properties.each   |$k, $v| { cs_property     { $k: * => $d + $v } }
 
-    $rsc_defaults.each |$k, $v| { cs_rsc_defaults { $k: * => $v } }
+    $rsc_defaults.each |$k, $v| { cs_rsc_defaults { $k: * => $d + $v } }
 
     cs_commit { 'puppet': }
 
