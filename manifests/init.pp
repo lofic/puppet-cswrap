@@ -1,11 +1,12 @@
 # Wrapper for the puppet/corosync module
 
 class cswrap(
-    $primitives = {},
-    $locations = {},
-    $colocations = {},
-    $orders = {},
     $clones = {},
+    $colocations = {},
+    $groups = {},
+    $locations = {},
+    $orders = {},
+    $primitives = {},
     $properties = {},
     $rsc_defaults = {},
 ) {
@@ -18,6 +19,8 @@ class cswrap(
     cs_shadow { 'puppet': }
 
     $primitives.each   |$k, $v| { cs_primitive    { $k: * => $d + $v } }
+
+    $groups.each       |$k, $v| { cs_group        { $k: * => $d + $v } }
 
     $locations.each    |$k, $v| { cs_location     { $k: * => $d + $v } }
 
