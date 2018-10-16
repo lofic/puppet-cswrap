@@ -13,6 +13,14 @@ class cswrap(
 
     include corosync
 
+    file { 'fence_dummy':
+        path   => '/usr/sbin/fence_dummy',
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+        source => 'puppet:///modules/cswrap/fence_dummy',
+    }
+
     # Defaults
     $d = { cib => 'puppet' }
 
